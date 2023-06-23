@@ -1,6 +1,7 @@
 // Action Value
 const TOGLE_SELECT = "select/TOGLE_SELECT";
 const GET_SELECTED_ITEM = "select/GET_SELECTED_ITEM";
+const ADD_SELECT_DATA = "select/ADD_SELECT_DATA";
 
 // Action Creator
 export const togleSelect = payload => {
@@ -15,17 +16,23 @@ export const getSelectedItem = payload => {
     payload
   };
 };
+export const addSelectData = payload => {
+  return {
+    type: ADD_SELECT_DATA,
+    payload
+  };
+};
 
 // Initial State
 const initialState = {
   isOpen: false,
   data: [
-    { val: "1", name: "아이템1" },
-    { val: "2", name: "아이템2" },
-    { val: "3", name: "아이템3" },
-    { val: "4", name: "아이템4" }
+    { value: "1", name: "아이템1" },
+    { value: "2", name: "아이템2" },
+    { value: "3", name: "아이템3" },
+    { value: "4", name: "아이템4" }
   ],
-  isSelected: { val: "1", name: "아이템1" }
+  isSelected: { value: "1", name: "아이템1" }
 };
 
 // Reducer
@@ -40,7 +47,12 @@ const select = (state = initialState, action) => {
       return {
         ...state,
         isOpen: !state.isOpen,
-        isSelected: state.data.find(item => item.val == action.payload)
+        isSelected: state.data.find(item => item.value == action.payload)
+      };
+    case ADD_SELECT_DATA:
+      return {
+        ...state,
+        data: action.payload
       };
     default:
       return state;

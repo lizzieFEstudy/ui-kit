@@ -1,39 +1,39 @@
 // Action Value
-const TOGLE_MODAL = "modal/TOGLE_MODAL";
-const TOGLE_MODAL2 = "modal/TOGLE_MODAL2";
+const OPEN_MODAL = "modal/OPEN_MODAL";
+const CLOSE_MODAL = "modal/CLOSE_MODAL";
 
 // Action Creator
-export const togleModal = payload => {
+export const openModal = payload => {
   return {
-    type: TOGLE_MODAL,
+    type: OPEN_MODAL,
     payload
   };
 };
-export const togleModal2 = payload => {
+export const closeModal = () => {
   return {
-    type: TOGLE_MODAL2,
-    payload
+    type: CLOSE_MODAL
   };
 };
 
 // Initial State
 const initialState = {
-  isOpen: false,
-  isOpen2: false
+  modalType: "",
+  isOpen: false
 };
 
 // Reducer
 const modal = (state = initialState, action) => {
   switch (action.type) {
-    case TOGLE_MODAL:
+    case OPEN_MODAL:
       return {
         ...state,
-        isOpen: !state.isOpen
+        modalType: action.payload,
+        isOpen: true
       };
-    case TOGLE_MODAL2:
+    case CLOSE_MODAL:
       return {
         ...state,
-        isOpen2: !state.isOpen2
+        isOpen: false
       };
     default:
       return state;
