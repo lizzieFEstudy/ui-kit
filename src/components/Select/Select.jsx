@@ -1,31 +1,23 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSelectedItem, togleSelect } from "redux/modules/select";
+import { togleSelect } from "redux/modules/select";
+import SelectList from "./SelectList";
 
 const Select = () => {
-  const { isOpen, data, isSelected } = useSelector(state => {
+  const { isOpen, isSelected } = useSelector(state => {
     return state.select;
   });
-
-  const itemOnClickHandler = e => {
-    dispatch(getSelectedItem(e.target.value));
-  };
+  console.log("test =>", isSelected);
 
   const dispatch = useDispatch();
   return (
     <>
-      {/* <div>
-        <button onClick={() => dispatch(togleSelect())}>{isSelected}</button>
-        {isOpen === true ? (
-          <ul>
-            {data.map(item => {
-              <li value={data.val} onClick={itemOnClickHandler}>
-                {data.name}
-              </li>;
-            })}
-          </ul>
-        ) : null}
-      </div> */}
+      <div>
+        <button onClick={() => dispatch(togleSelect())}>
+          {isSelected.name}
+        </button>
+        {isOpen === true ? <SelectList /> : null}
+      </div>
     </>
   );
 };
