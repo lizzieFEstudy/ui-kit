@@ -7,7 +7,6 @@ const Select = () => {
   const { isOpen, isSelected } = useSelector(state => {
     return state.select;
   });
-  console.log("test =>", isSelected);
 
   const dispatch = useDispatch();
   return (

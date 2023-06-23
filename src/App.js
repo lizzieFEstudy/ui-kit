@@ -1,48 +1,44 @@
-import Modal from "components/modal/Modal";
 import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import { togleModal, togleModal2 } from "redux/modules/modal";
+import { useDispatch } from "react-redux";
 import Button from "components/Button";
 import { FaAngleRight, FaBell } from "react-icons/fa6";
 import Form from "components/Input/Form";
 import Select from "components/Select/Select";
-import Modal2 from "components/modal/Modal2";
+import { styled } from "styled-components";
+import { openModal } from "redux/modules/modal";
 
 function App() {
-  const { isOpen, isOpen2 } = useSelector(state => {
-    return state.modal;
-  });
-  console.log("isOpen => ", isOpen);
-
   const dispatch = useDispatch();
+
+  const handleModalOpen = () => {
+    dispatch(openModal("BasicModal"));
+  };
+
+  const handleOverayModalOpen = () => {
+    dispatch(openModal("OverlayModal"));
+  };
 
   return (
     <>
       <h1>UI Kit</h1>
       <h2>Modal</h2>
-      <button onClick={() => dispatch(togleModal())}>모달1</button>
-      {isOpen === true ? (
-        <Modal>
-          닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지 않아요.
-        </Modal>
-      ) : null}
-      <button onClick={() => dispatch(togleModal2())}>모달2</button>
-      {isOpen2 === true ? (
-        <Modal2>닫기 버튼 1개가 있고, 외부 영역을 누르면 모달이 닫혀요.</Modal2>
-      ) : null}
+      <button onClick={handleModalOpen}>모달 테스트</button>
+      <button onClick={handleOverayModalOpen}>오버레이버전 모달 테스트</button>
 
       <h2>Button</h2>
-      <Button size="sm">Small</Button>
-      <Button variant="success" size="sm" disabled>
-        disabled
-      </Button>
-      <Button variant="successOutline">Medium</Button>
-      <Button variant="error" size="lg">
-        Large <FaBell size={16} />
-      </Button>
-      <Button variant="warning" size="lg">
-        Large <FaAngleRight size={16} />
-      </Button>
+      <Wrapper>
+        <Button size="sm">Small</Button>
+        <Button variant="success" size="sm" disabled>
+          disabled
+        </Button>
+        <Button variant="successOutline">Medium</Button>
+        <Button variant="error" size="lg">
+          Large <FaBell size={16} />
+        </Button>
+        <Button variant="warning" size="lg">
+          Large <FaAngleRight size={16} />
+        </Button>
+      </Wrapper>
 
       <h2>Input</h2>
       <Form />
@@ -61,5 +57,13 @@ function App() {
     </>
   );
 }
+
+const Wrapper = styled.form`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 8px;
+  display: flex;
+  justify-content: space-around;
+`;
 
 export default App;
