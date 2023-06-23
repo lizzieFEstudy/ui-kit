@@ -18,7 +18,7 @@ const SelectList = () => {
     <ul style={{ position: "absolute", zIndex: "100" }}>
       {data.map(item => {
         return (
-          <li key={item.val} value={item.val} onClick={itemOnClickHandler}>
+          <li key={item.value} value={item.value} onClick={itemOnClickHandler}>
             {item.name}
           </li>
         );

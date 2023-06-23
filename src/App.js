@@ -1,11 +1,12 @@
 import "./App.css";
 import { useDispatch } from "react-redux";
-import Button from "components/Button";
+import Button from "components/button/Button";
 import { FaAngleRight, FaBell } from "react-icons/fa6";
 import Form from "components/Input/Form";
-import Select from "components/Select/Select";
+import Select from "components/select/Select";
 import { styled } from "styled-components";
 import { openModal } from "redux/modules/modal";
+import ButtonBox from "components/button/ButtonBox";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function App() {
       <button onClick={handleOverayModalOpen}>오버레이버전 모달 테스트</button>
 
       <h2>Button</h2>
-      <Wrapper>
+      <ButtonBox>
         <Button size="sm">Small</Button>
         <Button variant="success" size="sm" disabled>
           disabled
@@ -38,7 +39,7 @@ function App() {
         <Button variant="warning" size="lg">
           Large <FaAngleRight size={16} />
         </Button>
-      </Wrapper>
+      </ButtonBox>
 
       <h2>Input</h2>
       <Form />
@@ -52,18 +53,16 @@ function App() {
           padding: "20px"
         }}
       >
-        <Select />
+        <Select
+          options={[
+            { value: "1", name: "테스트" },
+            { value: "2", name: "되나?" },
+            { value: "3", name: "아이템3" }
+          ]}
+        />
       </div>
     </>
   );
 }
-
-const Wrapper = styled.form`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 8px;
-  display: flex;
-  justify-content: space-around;
-`;
 
 export default App;
