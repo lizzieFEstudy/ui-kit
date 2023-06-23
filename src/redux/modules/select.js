@@ -16,10 +16,11 @@ export const getSelectedItem = payload => {
     payload
   };
 };
-export const addSelectData = payload => {
+export const addSelectData = (options, defaultValue) => {
   return {
     type: ADD_SELECT_DATA,
-    payload
+    options,
+    defaultValue
   };
 };
 
@@ -32,7 +33,8 @@ const initialState = {
     { value: "3", name: "아이템3" },
     { value: "4", name: "아이템4" }
   ],
-  isSelected: { value: "1", name: "아이템1" }
+  isSelected: { value: "1", name: "아이템1" },
+  defaultValue: 1
 };
 
 // Reducer
@@ -52,7 +54,9 @@ const select = (state = initialState, action) => {
     case ADD_SELECT_DATA:
       return {
         ...state,
-        data: action.payload
+        data: action.options,
+        isSelected: state.data.find(item => item.value == action.defaultValue),
+        defaultValue: action.defaultValue
       };
     default:
       return state;

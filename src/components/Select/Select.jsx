@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSelectData, togleSelect } from "redux/modules/select";
 import SelectList from "./SelectList";
 
-const Select = ({ options }) => {
+const Select = ({ options, defaultValue }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addSelectData(options, defaultValue));
+  }, []);
+
   const { isOpen, isSelected } = useSelector(state => {
     return state.select;
   });
-
-  const dispatch = useDispatch();
-
-  dispatch(addSelectData(options));
 
   return (
     <>

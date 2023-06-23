@@ -59,6 +59,7 @@ function App() {
             { value: "2", name: "되나?" },
             { value: "3", name: "아이템3" }
           ]}
+          defaultValue={1}
         />
       </div>
     </>
