@@ -25,7 +25,7 @@ const initialState = {
     { val: "3", name: "아이템3" },
     { val: "4", name: "아이템4" }
   ],
-  isSelected: {}
+  isSelected: { val: "1", name: "아이템1" }
 };
 
 // Reducer
@@ -39,6 +39,7 @@ const select = (state = initialState, action) => {
     case GET_SELECTED_ITEM:
       return {
         ...state,
+        isOpen: !state.isOpen,
         isSelected: state.data.find(item => item.val == action.payload)
       };
     default:
