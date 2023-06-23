@@ -48,7 +48,16 @@ function App() {
       <Form />
 
       <h2>Select</h2>
-      <Select />
+      <div
+        style={{
+          overflow: "hidden",
+          height: "50px",
+          background: "#abf",
+          padding: "20px"
+        }}
+      >
+        <Select />
+      </div>
     </>
   );
 }

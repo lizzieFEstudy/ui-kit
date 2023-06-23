@@ -15,7 +15,7 @@ const SelectList = () => {
   console.log("data => ", data);
 
   return (
-    <ul>
+    <ul style={{ position: "absolute", zIndex: "100" }}>
       {data.map(item => {
         return (
           <li key={item.val} value={item.val} onClick={itemOnClickHandler}>
